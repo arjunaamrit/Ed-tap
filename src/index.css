@@ -1,0 +1,283 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 0%;
+
+    --primary: 212 100% 50%; /* Neon Blue */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 0%;
+
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 40%;
+
+    --accent: 30 100% 50%; /* Neon Orange */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 0%;
+    --input: 0 0% 0%;
+    --ring: 212 100% 50%;
+
+    --radius: 0; /* Brutalist - no rounded corners */
+
+    /* Reader specific */
+    --reader-bg: 0 0% 100%;
+    --reader-text: 0 0% 0%;
+    --highlight-yellow: 60 100% 50%;
+    --highlight-green: 120 100% 50%;
+    --highlight-blue: 200 100% 50%;
+    --highlight-pink: 330 100% 50%;
+    --note-bg: 60 100% 95%;
+    --bookmark-color: 0 0% 0%;
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 0 0% 0%;
+    --sidebar-primary: 0 0% 0%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 90%;
+    --sidebar-accent-foreground: 0 0% 0%;
+    --sidebar-border: 0 0% 0%;
+    --sidebar-ring: 0 0% 0%;
+  }
+
+  .dark {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+
+    --card: 0 0% 5%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 0 0% 5%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 212 100% 60%;
+    --primary-foreground: 0 0% 0%;
+
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 30 100% 60%;
+    --accent-foreground: 0 0% 0%;
+
+    --destructive: 0 100% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 100%;
+    --input: 0 0% 100%;
+    --ring: 212 100% 60%;
+
+    /* Reader specific */
+    --reader-bg: 0 0% 5%;
+    --reader-text: 0 0% 100%;
+    --highlight-yellow: 60 100% 30%;
+    --highlight-green: 120 100% 25%;
+    --highlight-blue: 200 100% 35%;
+    --highlight-pink: 330 100% 35%;
+    --note-bg: 60 100% 15%;
+    --bookmark-color: 0 0% 100%;
+
+    --sidebar-background: 0 0% 5%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 0 0% 100%;
+    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-accent: 0 0% 20%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 0 0% 100%;
+    --sidebar-ring: 0 0% 100%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html, body, #root {
+    height: 100%;
+  }
+
+  #root {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    @apply bg-background text-foreground font-display antialiased;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+  }
+  
+  .font-body {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+  }
+
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+  
+  .reader-prose {
+    @apply leading-relaxed tracking-wide;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+  }
+
+  .highlight-yellow {
+    background-color: hsl(var(--highlight-yellow));
+    color: black;
+  }
+
+  .highlight-green {
+    background-color: hsl(var(--highlight-green));
+    color: black;
+  }
+
+  .highlight-blue {
+    background-color: hsl(var(--highlight-blue));
+    color: black;
+  }
+
+  .highlight-pink {
+    background-color: hsl(var(--highlight-pink));
+    color: black;
+  }
+
+  .annotation-note {
+    @apply relative;
+  }
+
+  .annotation-note::after {
+    content: '';
+    @apply absolute -right-2 top-0 w-2 h-2 bg-primary;
+  }
+  
+  .text-gradient {
+    @apply text-primary;
+  }
+  
+  .animation-delay-150 { animation-delay: 150ms; }
+  .animation-delay-300 { animation-delay: 300ms; }
+  .animation-delay-450 { animation-delay: 450ms; }
+  .animation-delay-600 { animation-delay: 600ms; }
+
+  .brutal-border {
+    border: 2px solid currentColor;
+  }
+
+  .brutal-shadow {
+    box-shadow: 4px 4px 0px 0px currentColor;
+  }
+
+  .brutal-shadow-hover:hover {
+    box-shadow: 8px 8px 0px 0px currentColor;
+    transform: translate(-2px, -2px);
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply bg-background border-2 border-foreground shadow-[4px_4px_0px_0px_rgba(0,0,0,1)];
+  }
+  
+  .glass-card {
+    @apply bg-background border-2 border-foreground shadow-[4px_4px_0px_0px_rgba(0,0,0,1)];
+  }
+
+  .reader-card {
+    @apply bg-[hsl(var(--reader-bg))] text-[hsl(var(--reader-text))];
+  }
+
+  .toolbar-button {
+    @apply p-2 border-2 border-transparent transition-all duration-200 hover:border-foreground active:bg-foreground active:text-background;
+  }
+
+  .sidebar-item {
+    @apply flex items-center gap-3 px-3 py-2 border-2 border-transparent transition-all duration-200 
+           hover:border-foreground text-sidebar-foreground cursor-pointer;
+  }
+
+  .sidebar-item-active {
+    @apply bg-foreground text-background font-bold;
+  }
+  
+  .hero-gradient {
+    @apply bg-background;
+  }
+  
+  .feature-card {
+    @apply bg-background border-2 border-foreground p-8 transition-all duration-300 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-1 hover:-translate-y-1;
+  }
+  
+  .glow-orb {
+    @apply hidden;
+  }
+  
+  .upload-zone {
+    @apply border-4 border-dashed border-foreground p-12 transition-all duration-300 
+           hover:bg-primary/10 cursor-pointer;
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes float-delayed {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float-delayed 5s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out forwards;
+  opacity: 0;
+}

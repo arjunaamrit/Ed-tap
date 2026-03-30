@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Authenticating...</title>
+</head>
+<body>
+  <p>Authentication successful. This window should close automatically.</p>
+  <script>
+    // Extract hash parameters (Supabase session info)
+    const hash = window.location.hash;
+    
+    if (window.opener) {
+      // Send the hash back to the main window
+      window.opener.postMessage({ type: 'SUPABASE_AUTH_SUCCESS', hash: hash }, '*');
+      window.close();
+    } else {
+      // Fallback if not in a popup
+      window.location.href = '/';
+    }
+  </script>
+</body>
+</html>
