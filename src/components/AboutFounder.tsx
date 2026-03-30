@@ -43,7 +43,7 @@ const AboutFounder = () => {
                   
                   <p className="text-gray-600">
                     Behind the scenes, it's not just a dictionary. We're building an intelligent layer on top of search, 
-                    using transformer-based models like GPT to go beyond keywords and give exact, contextual answers.
+                    using transformer-based models like Google Gemini to go beyond keywords and give exact, contextual answers.
                   </p>
 
                   <p className="text-gray-600">
@@ -54,9 +54,9 @@ const AboutFounder = () => {
                 </div>
               </div>
               <div className="bg-gradient-to-br from-indigo-100 to-purple-100 p-6 flex flex-col justify-center items-center text-center">
-                <div className="w-32 h-32 rounded-full overflow-hidden mb-4 shadow-lg">
+                <div className="w-32 h-32 rounded-full overflow-hidden mb-4 shadow-lg border-4 border-white">
                   <img 
-                    src="/lovable-uploads/41c1f0e8-c2cb-435d-972c-9586c2bab4fb.png" 
+                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop" 
                     alt="Arjuna - Founder of Tapit" 
                     className="w-full h-full object-cover" 
                   />
