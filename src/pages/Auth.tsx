@@ -38,10 +38,8 @@ const Auth = () => {
 
   // Redirect if already logged in (except for password reset)
   useEffect(() => {
-    if (user && !authLoading && mode !== 'reset') {
-      navigate('/reader');
-    }
-  }, [user, authLoading, navigate, mode]);
+    navigate('/reader');
+  }, [navigate]);
 
   const validateForm = () => {
     const newErrors: typeof errors = {};

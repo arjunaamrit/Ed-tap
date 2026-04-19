@@ -50,6 +50,33 @@ export const useDocuments = () => {
   const fetchDocuments = useCallback(async () => {
     if (!user) return;
     
+    // For hackathon: If it's the mock user, provide some sample documents
+    if (user.id === 'hackathon-judge-id') {
+      setDocuments([
+        {
+          id: 'sample-1',
+          file_name: 'Introduction to TapIt.pdf',
+          file_type: 'pdf',
+          file_size: 1024,
+          content: 'Welcome to TapIt! This is a sample document to show you how the speed reader works. Double tap any word to get a definition.',
+          folder_id: null,
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString(),
+        },
+        {
+          id: 'sample-2',
+          file_name: 'AI in Education.docx',
+          file_type: 'docx',
+          file_size: 2048,
+          content: 'Artificial Intelligence is transforming education by providing personalized learning experiences...',
+          folder_id: null,
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString(),
+        }
+      ]);
+      return;
+    }
+
     setLoading(true);
     try {
       const { data, error } = await supabase
@@ -78,6 +105,22 @@ export const useDocuments = () => {
   const saveDocument = useCallback(async (fileName: string, fileType: string, content: string, fileSize?: number) => {
     if (!user) return null;
     
+    // For hackathon: Mock saving for the judge user
+    if (user.id === 'hackathon-judge-id') {
+      const newDoc: Document = {
+        id: `local-${Date.now()}`,
+        file_name: fileName,
+        file_type: fileType,
+        file_size: fileSize || null,
+        content,
+        folder_id: null,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      };
+      setDocuments(prev => [newDoc, ...prev]);
+      return newDoc;
+    }
+
     try {
       const { data, error } = await supabase
         .from('documents')

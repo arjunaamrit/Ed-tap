@@ -8,7 +8,21 @@ export const useAuth = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Set up auth state listener FIRST
+    // For hackathon: Mock a user session to bypass login gates
+    const mockUser = {
+      id: 'hackathon-judge-id',
+      email: 'judge@hackathon.com',
+      user_metadata: { full_name: 'Hackathon Judge' },
+      aud: 'authenticated',
+      role: 'authenticated',
+      created_at: new Date().toISOString(),
+    } as User;
+
+    setUser(mockUser);
+    setSession({ user: mockUser, access_token: 'mock-token', refresh_token: 'mock-token', expires_in: 3600, token_type: 'bearer' } as Session);
+    setLoading(false);
+
+    /* Original auth logic commented out for hackathon
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       (_event, session) => {
         setSession(session);
@@ -17,7 +31,6 @@ export const useAuth = () => {
       }
     );
 
-    // THEN check for existing session
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
       setUser(session?.user ?? null);
@@ -25,42 +38,27 @@ export const useAuth = () => {
     });
 
     return () => subscription.unsubscribe();
+    */
   }, []);
 
   const signUp = useCallback(async (email: string, password: string) => {
-    const redirectUrl = `${window.location.origin}/`;
-    
-    const { error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        emailRedirectTo: redirectUrl
-      }
-    });
-    return { error };
+    // @ts-expect-error - Mock error for hackathon demo
+    return { error: { message: "Sign up is disabled for the hackathon demo.", name: 'AuthDisabled', status: 403 } };
   }, []);
 
   const signIn = useCallback(async (email: string, password: string) => {
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-    return { error };
+    // @ts-expect-error - Mock error for hackathon demo
+    return { error: { message: "Sign in is disabled for the hackathon demo.", name: 'AuthDisabled', status: 403 } };
   }, []);
 
   const signOut = useCallback(async () => {
-    const { error } = await supabase.auth.signOut();
-    return { error };
+    // No-op for hackathon
+    return { error: null };
   }, []);
 
   const signInWithGoogle = useCallback(async () => {
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: 'google',
-      options: {
-        redirectTo: `${window.location.origin}/reader`
-      }
-    });
-    return { error };
+    // @ts-expect-error - Mock error for hackathon demo
+    return { error: { message: "Google Sign-in is disabled for the hackathon demo.", name: 'AuthDisabled', status: 403 } };
   }, []);
 
   const resetPassword = useCallback(async (email: string) => {

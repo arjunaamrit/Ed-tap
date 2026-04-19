@@ -213,7 +213,7 @@ const DocumentReader = () => {
       const localDoc = addLocalDocument(name, text);
       setCurrentLocalDocId(localDoc.id);
       setCurrentDocumentId(null);
-      toast({ title: "Document loaded", description: "Sign in to sync your documents across devices" });
+      toast({ title: "Document loaded", description: "Document is available for this session." });
     }
   }, [user, saveDocument, addLocalDocument, toast]);
 
@@ -493,20 +493,10 @@ const DocumentReader = () => {
               )}
               
               {user ? (
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" size="sm" className="gap-1 px-2 sm:px-3">
-                      <User className="h-4 w-4" />
-                      <span className="hidden lg:inline max-w-[80px] truncate">{user.email?.split('@')[0]}</span>
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end">
-                    <DropdownMenuItem onClick={handleSignOut} className="gap-2 cursor-pointer">
-                      <LogOut className="h-4 w-4" />
-                      Sign Out
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
+                <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider border border-primary/20">
+                  <Sparkles className="h-3 w-3" />
+                  Hackathon Demo Mode
+                </div>
               ) : (
                 <Button variant="outline" size="sm" onClick={() => navigate('/auth')} className="gap-1 px-2 sm:px-3">
                   <User className="h-4 w-4" />

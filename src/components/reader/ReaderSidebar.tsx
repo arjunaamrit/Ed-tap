@@ -165,11 +165,6 @@ export const ReaderSidebar = ({
                 {/* Local documents */}
                 {localDocuments.length > 0 && (
                   <div className="space-y-1">
-                    {!isLoggedIn && (
-                      <p className="text-xs text-muted-foreground px-2 py-1">
-                        📁 Local (sign in to sync)
-                      </p>
-                    )}
                     {localDocuments.map((doc) => (
                       <div
                         key={doc.id}
@@ -208,11 +203,6 @@ export const ReaderSidebar = ({
                 {/* Cloud documents */}
                 {cloudDocuments.length > 0 && (
                   <div className="space-y-1">
-                    {localDocuments.length > 0 && (
-                      <p className="text-xs text-muted-foreground px-2 py-1 mt-3">
-                        ☁️ Synced
-                      </p>
-                    )}
                     {cloudDocuments.map((doc) => (
                       <div
                         key={doc.id}
